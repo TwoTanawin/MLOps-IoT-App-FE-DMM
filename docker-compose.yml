@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: 337909772512.dkr.ecr.ap-southeast-1.amazonaws.com/device_registry_app:0.1
+    platform: linux/amd64
+    ports:
+      - "8090:80"
+    restart: always
+    networks:
+      - device_registry_network
+
+networks:
+  device_registry_network:
+    driver: bridge

@@ -26,7 +26,7 @@ jobs:
 
       - name: Build and push Docker image
         env:
-          ECR_REPOSITORY: ${{ secrets.ECR_REPO }}
+          ECR_REPOSITORY: 337909772512.dkr.ecr.ap-southeast-1.amazonaws.com/device_registry_app
           IMAGE_TAG: 0.1
         run: |
           docker build -t $ECR_REPOSITORY:$IMAGE_TAG .

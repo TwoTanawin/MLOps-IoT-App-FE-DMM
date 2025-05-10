@@ -6,7 +6,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: 337909772512.dkr.ecr.ap-southeast-1.amazonaws.com/device_registry_app:0.1
+    image: 337909772512.dkr.ecr.ap-southeast-1.amazonaws.com/device_registry_app:0.2
     platform: linux/amd64
     ports:
       - "8090:80"

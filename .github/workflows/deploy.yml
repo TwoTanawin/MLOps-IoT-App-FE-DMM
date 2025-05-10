@@ -3,7 +3,7 @@ name: Build and Push Frontend to ECR
 on:
   push:
     branches:
-      - main  # or your deployment branch
+      - production  # or your deployment branch
 
 jobs:
   deploy:

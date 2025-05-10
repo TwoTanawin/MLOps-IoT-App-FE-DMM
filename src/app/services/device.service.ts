@@ -29,10 +29,11 @@ export class DeviceService {
     return this.http.get<Device>(`${this.baseUrl}/${id}`);
   }
 
-  updateDeviceStatus(id: number, active: boolean): Observable<Device> {
+  updateDeviceStatus(serialNumber: string, active: boolean): Observable<Device> {
     const params = new HttpParams().set('active', active);
-    return this.http.put<Device>(`${this.baseUrl}/${id}/status`, null, { params });
+    return this.http.put<Device>(`${this.baseUrl}/${serialNumber}/status`, null, { params });
   }
+
 
   deleteDevice(id: number): Observable<string> {
     return this.http.delete(`${this.baseUrl}/${id}`, { responseType: 'text' });

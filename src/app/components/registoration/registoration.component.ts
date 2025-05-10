@@ -36,7 +36,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   styleUrl: './registoration.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class RegistorationComponent  implements OnInit {
+export class RegistorationComponent implements OnInit {
   private deviceService = inject(DeviceService);
   private cdr = inject(ChangeDetectorRef);
 
@@ -55,7 +55,7 @@ export class RegistorationComponent  implements OnInit {
   ngOnInit(): void {
     this.loadDeviceData(this.currentPage, this.pageSize);
   }
-  
+
 
   loadDeviceData(page: number, size: number): void {
     this.deviceService.getDevicesByPagination(page, size).subscribe({
@@ -79,8 +79,8 @@ export class RegistorationComponent  implements OnInit {
       }
     });
   }
-  
-  
+
+
 
   createDevice(): void {
     this.deviceService.generateDevice().subscribe({
@@ -140,4 +140,20 @@ export class RegistorationComponent  implements OnInit {
   totalPages(): number {
     return Math.ceil(this.totalElements / this.pageSize);
   }
+
+  toggleDeviceStatus(device: Device): void {
+    const newStatus = !device.active;
+    this.deviceService.updateDeviceStatus(device.serialNumber, newStatus).subscribe({
+      next: (updatedDevice) => {
+        device.active = updatedDevice.active;
+        this.responseMessage = `Device ${updatedDevice.serialNumber} is now ${updatedDevice.active ? 'Active' : 'Inactive'}`;
+        this.cdr.markForCheck();
+      },
+      error: () => {
+        this.responseMessage = 'Failed to update device status';
+        this.cdr.markForCheck();
+      }
+    });
+  }
+
 }

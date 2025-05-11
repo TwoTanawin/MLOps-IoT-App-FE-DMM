@@ -1,6 +1,6 @@
 export const environment = {
     production: false,
     api: {
-        devices: 'http://localhost:8180/api/v1/devices',
+        devices: 'http://device-registry-alb-backend-5-918131464.ap-southeast-1.elb.amazonaws.com/api/v1/devices',
     }
 };
